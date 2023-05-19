@@ -2,6 +2,7 @@ package app.entities;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ import lombok.ToString;
 public class Utente {
 	@Id
 	@GeneratedValue
-	private String numTessera;
+	private UUID numTessera;
 	private String nome;
 	private String cognome;
 	private LocalDate dataNascita;

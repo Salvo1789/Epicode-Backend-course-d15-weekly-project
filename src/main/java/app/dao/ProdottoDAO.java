@@ -51,4 +51,10 @@ public class ProdottoDAO {
 
 	}
 
+	public Prodotto getByAnno(int anno) {
+		TypedQuery<Prodotto> q = em.createNamedQuery("Prodotto.getByAnno", Prodotto.class);
+		q.setParameter("anno", anno);
+		return q.getSingleResult();
+	}
+
 }

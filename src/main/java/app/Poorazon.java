@@ -1,5 +1,7 @@
 package app;
 
+import java.time.LocalDate;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -11,6 +13,7 @@ import app.dao.UtenteDAO;
 import app.entities.Libro;
 import app.entities.Periodicita;
 import app.entities.Rivista;
+import app.entities.Utente;
 import app.utils.JpaUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -42,6 +45,14 @@ public class Poorazon {
 		rd.saveRivista(r2);
 		rd.saveRivista(r3);
 
+		Utente user1 = new Utente("Martina", "Romano", LocalDate.of(1989, 10, 29));
+		Utente user2 = new Utente("Manuele", "Forte", LocalDate.of(1992, 07, 15));
+		Utente user3 = new Utente("Orlando", "Esposito", LocalDate.of(1987, 01, 07));
+
+		ud.saveUtente(user1);
+		ud.saveUtente(user2);
+		ud.saveUtente(user3);
+
 		// Ricerca prodotto per ISBN
 		/*
 		 * Rivista riv = rd.findById("5c941bc5-3c8d-4ff8-8d73-abee72896c27");
@@ -53,6 +64,12 @@ public class Poorazon {
 
 		// Ricerca per titolo o parte di esso
 		log.info("Ricerca per titolo in corso: " + pd.getByTitolo("Manuale di bighellonaggio").toString());
+
+		// Ricerca per anno pubblicazione
+		log.info("Ricerca per anno di pubblicazione in corso: " + pd.getByAnno(1970).toString());
+
+		em.close();
+		emf.close();
 
 	}
 

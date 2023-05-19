@@ -23,6 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @NamedQuery(name = "Prodotto.getByTitolo", query = "SELECT p FROM Prodotto p WHERE p.titolo LIKE :titolo")
+@NamedQuery(name = "Prodotto.getByAnno", query = "SELECT p FROM Prodotto p WHERE p.annoPubblicazione = :anno ")
 public abstract class Prodotto {
 	@Id
 	@GeneratedValue
