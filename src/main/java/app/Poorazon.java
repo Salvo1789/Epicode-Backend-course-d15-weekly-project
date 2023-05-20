@@ -63,13 +63,21 @@ public class Poorazon {
 		Prestito p3 = new Prestito(user3, l1, LocalDate.of(2023, 03, 14), LocalDate.of(2023, 03, 14).plusDays(30),
 				LocalDate.of(2023, 04, 30));
 
-		Prestito p4 = new Prestito(user3, r1, LocalDate.of(2023, 05, 14), LocalDate.of(2023, 03, 14).plusDays(30),
+		Prestito p4 = new Prestito(user3, r1, LocalDate.of(2023, 05, 14), LocalDate.of(2023, 05, 14).plusDays(30),
+				null);
+
+		Prestito p5 = new Prestito(user2, r2, LocalDate.of(2023, 04, 11), LocalDate.of(2023, 04, 11).plusDays(30),
+				null);
+
+		Prestito p6 = new Prestito(user1, r3, LocalDate.of(2023, 04, 11), LocalDate.of(2023, 04, 11).plusDays(30),
 				null);
 
 		prd.savePrestito(p1);
 		prd.savePrestito(p2);
 		prd.savePrestito(p3);
 		prd.savePrestito(p4);
+		prd.savePrestito(p5);
+		prd.savePrestito(p6);
 
 		// Ricerca prodotto per ISBN
 
@@ -87,7 +95,10 @@ public class Poorazon {
 
 		// Ricerca prestiti attivi per numero tessera
 		log.info("L'utente " + user3.getNome() + " " + user3.getCognome() + " ha i seguenti prestiti in corso: "
-				+ pd.getByNumeroTesseraAndPrestitoAttivo(user3.getNumTessera()));
+				+ pd.getByNumeroTesseraAndPrestitoAttivo(user3.getNumTessera()).toString());
+
+		// Ricerca prestiti scaduti di prodotti non restituiti
+		log.info("Prestiti scaduti e non risoluti: " + pd.getPrestitiScadutiAndNonConsegnati().toString());
 
 		em.close();
 		emf.close();

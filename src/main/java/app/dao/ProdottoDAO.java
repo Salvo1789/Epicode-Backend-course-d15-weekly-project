@@ -63,4 +63,9 @@ public class ProdottoDAO {
 		return q.getResultList();
 	}
 
+	public List<Prodotto> getPrestitiScadutiAndNonConsegnati() {
+		TypedQuery<Prodotto> q = em.createNamedQuery("Prestito.getPrestitiScadutiAndNonConsegnati", Prodotto.class);
+		return q.getResultList();
+	}
+
 }

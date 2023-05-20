@@ -19,6 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NamedQuery(name = "Prestito.getByNumeroTesseraAndPrestitoAttivo", query = "SELECT p.prodottoPrestato FROM Prestito p JOIN p.utente u WHERE u.numTessera = :numTessera AND p.dataRestituzioneReale IS NULL")
+@NamedQuery(name = "Prestito.getPrestitiScadutiAndNonConsegnati", query = "SELECT p.prodottoPrestato FROM Prestito p WHERE p.dataRestituzionePrevista < CURRENT_DATE and p.dataRestituzioneReale IS NULL")
 public class Prestito implements Serializable {
 	@Id
 	@ManyToOne
