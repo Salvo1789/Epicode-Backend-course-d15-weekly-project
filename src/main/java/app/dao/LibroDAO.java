@@ -36,4 +36,5 @@ public class LibroDAO {
 		// SELECT * FROM Libro
 		return getAllQuery.getResultList();
 	}
+
 }

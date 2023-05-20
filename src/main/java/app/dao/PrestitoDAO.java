@@ -37,4 +37,5 @@ public class PrestitoDAO {
 		// SELECT * FROM Libro
 		return getAllQuery.getResultList();
 	}
+
 }

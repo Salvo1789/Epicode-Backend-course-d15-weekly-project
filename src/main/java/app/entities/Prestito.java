@@ -6,19 +6,19 @@ import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
+@NamedQuery(name = "Prestito.getByNumeroTesseraAndPrestitoAttivo", query = "SELECT p.prodottoPrestato FROM Prestito p JOIN p.utente u WHERE u.numTessera = :numTessera AND p.dataRestituzioneReale IS NULL")
 public class Prestito implements Serializable {
 	@Id
 	@ManyToOne
@@ -38,5 +38,12 @@ public class Prestito implements Serializable {
 		this.dataInizioPrestito = dataInizioPrestito;
 		this.dataRestituzionePrevista = dataRestituzionePrevista;
 		this.dataRestituzioneReale = dataRestituzioneReale;
+	}
+
+	@Override
+	public String toString() {
+		return "Prestito [utente=" + utente + ", prodottoPrestato=" + prodottoPrestato + ", dataInizioPrestito="
+				+ dataInizioPrestito + ", dataRestituzionePrevista=" + dataRestituzionePrevista
+				+ ", dataRestituzioneReale=" + dataRestituzioneReale + "]";
 	}
 }

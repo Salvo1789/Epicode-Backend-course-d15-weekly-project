@@ -7,14 +7,12 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
 @NamedQuery(name = "Libro.getByAutore", query = "SELECT l from Libro l WHERE l.autore = :autore")
 public class Libro extends Prodotto {
 	private String autore;
@@ -25,4 +23,11 @@ public class Libro extends Prodotto {
 		this.autore = autore;
 		this.genere = gen;
 	}
+
+	@Override
+	public String toString() {
+		return "Libro [autore=" + autore + ", genere=" + genere + ", ISBN=" + ISBN + ", titolo=" + titolo
+				+ ", annoPubblicazione=" + annoPubblicazione + ", numPagine=" + numPagine + "]";
+	}
+
 }

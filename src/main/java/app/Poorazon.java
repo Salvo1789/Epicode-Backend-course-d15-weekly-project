@@ -12,6 +12,7 @@ import app.dao.RivistaDAO;
 import app.dao.UtenteDAO;
 import app.entities.Libro;
 import app.entities.Periodicita;
+import app.entities.Prestito;
 import app.entities.Rivista;
 import app.entities.Utente;
 import app.utils.JpaUtil;
@@ -53,11 +54,27 @@ public class Poorazon {
 		ud.saveUtente(user2);
 		ud.saveUtente(user3);
 
+		Prestito p1 = new Prestito(user1, l2, LocalDate.of(2023, 05, 01), LocalDate.of(2023, 05, 01).plusDays(30),
+				LocalDate.of(2023, 05, 19));
+
+		Prestito p2 = new Prestito(user2, l3, LocalDate.of(2023, 04, 26), LocalDate.of(2023, 04, 26).plusDays(30),
+				LocalDate.of(2023, 05, 19));
+
+		Prestito p3 = new Prestito(user3, l1, LocalDate.of(2023, 03, 14), LocalDate.of(2023, 03, 14).plusDays(30),
+				LocalDate.of(2023, 04, 30));
+
+		Prestito p4 = new Prestito(user3, r1, LocalDate.of(2023, 05, 14), LocalDate.of(2023, 03, 14).plusDays(30),
+				null);
+
+		prd.savePrestito(p1);
+		prd.savePrestito(p2);
+		prd.savePrestito(p3);
+		prd.savePrestito(p4);
+
 		// Ricerca prodotto per ISBN
-		/*
-		 * Rivista riv = rd.findById("5c941bc5-3c8d-4ff8-8d73-abee72896c27");
-		 * log.info(riv.toString());
-		 */
+
+//		Libro riv = ld.findById("58b3123c-adef-4e95-8a98-500235a2691e");
+//		log.info(riv.toString());
 
 		// Ricerca per autore
 		log.info("Ricerca per autore in corso: " + pd.getByAutore("Laura Sartori").toString());
@@ -67,6 +84,10 @@ public class Poorazon {
 
 		// Ricerca per anno pubblicazione
 		log.info("Ricerca per anno di pubblicazione in corso: " + pd.getByAnno(1970).toString());
+
+		// Ricerca prestiti attivi per numero tessera
+		log.info("L'utente " + user3.getNome() + " " + user3.getCognome() + " ha i seguenti prestiti in corso: "
+				+ pd.getByNumeroTesseraAndPrestitoAttivo(user3.getNumTessera()));
 
 		em.close();
 		emf.close();

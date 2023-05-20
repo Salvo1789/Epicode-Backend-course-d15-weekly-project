@@ -57,4 +57,10 @@ public class ProdottoDAO {
 		return q.getSingleResult();
 	}
 
+	public List<Prodotto> getByNumeroTesseraAndPrestitoAttivo(UUID numTessera) {
+		TypedQuery<Prodotto> q = em.createNamedQuery("Prestito.getByNumeroTesseraAndPrestitoAttivo", Prodotto.class);
+		q.setParameter("numTessera", numTessera);
+		return q.getResultList();
+	}
+
 }
